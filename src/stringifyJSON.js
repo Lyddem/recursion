@@ -4,50 +4,55 @@
 // but you don't so you're going to write it from scratch:
 
 var stringifyJSON = function(obj) {
-	/*
-	{
-		key1: 'value1',
-		key2: 'value2'
+
+	if(typeof obj === 'function' || undefined){
+		 return;
 	}
-	*/
-
-	//loop through object, stringify every key and value!
-
-	// for(var key in obj){	
-	// 	key.toString();
-	// 	obj[key] = '' + obj[key2];
-	// }
-
-
 	if(typeof obj === '{}'){
 			return '' + obj;
 	}
 
-	if(typeof obj === 'boolean'){
-		return '' + obj;
+	if(typeof obj === "number" || obj === null || typeof(obj) === 'boolean'){
+		return "" + obj;
 	}
 
 	if(typeof obj === 'string'){
-		return '' + string;
+		return '"' + obj + '"';
 	}
 
 	
 	if(Array.isArray(obj)){
-	  obj.forEach(element => {
-	      stringifyJSON(element)
-	  })
-    return '' + stringifyJSON(obj);
+	  if(obj.length === 0){
+	  	return "[]";
+	  } else {
+	  	var final = [];
+	  	obj.forEach(elem => {
+	  		final.push(stringifyJSON(elem)); 
+	  	})
+	  	return "[" + final + "]";
+	  }
 	}
 
 	if(typeof obj === 'object'){
 
-			for(var key in obj){
-				key.toString();
-				obj[key] = ''  + obj[key];
-			}
-				return '' + obj;
-	}
+		var results = [];
+		var keys = Object.keys(obj);
 
+		// if(Object.keys(obj)).length === 0){
+		// 	return '{}';
+		// }
+
+		for(var key in obj){
+		
+		if(obj[key] === undefined || typeof (obj[key]) === 'function'){
+			continue;
+		}
+
+		results.push(stringifyJSON(key) + ':' + stringifyJSON(obj[key]));
+	}
+		return '{' + results.join(',') + '}';
+  }
+		// return '' + obj;
 };
 
 
