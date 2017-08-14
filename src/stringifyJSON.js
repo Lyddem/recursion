@@ -20,7 +20,6 @@ var stringifyJSON = function(obj) {
 		return '"' + obj + '"';
 	}
 
-	
 	if(Array.isArray(obj)){
 	  if(obj.length === 0){
 	  	return "[]";
@@ -38,10 +37,6 @@ var stringifyJSON = function(obj) {
 		var results = [];
 		var keys = Object.keys(obj);
 
-		// if(Object.keys(obj)).length === 0){
-		// 	return '{}';
-		// }
-
 		for(var key in obj){
 		
 		if(obj[key] === undefined || typeof (obj[key]) === 'function'){
@@ -52,7 +47,6 @@ var stringifyJSON = function(obj) {
 	}
 		return '{' + results.join(',') + '}';
   }
-		// return '' + obj;
 };
 
 
