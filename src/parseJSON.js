@@ -3,5 +3,14 @@
 
 // but you're not, so you'll write it from scratch:
 var parseJSON = function(json) {
-  // your code goes here
+
+  var stack = [];
+  var hash = {};
+
+  for(var i = 0; i < json.length; i++){
+    var value = json[i];
+    if(value === '{' || value === '}'){
+      continue;
+    }
+  }
 };
